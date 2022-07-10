@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/storage-merger-api/src",
+  "monorepo": true,
+  "root": "apps/storage-merger-api",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/storage-merger-api/tsconfig.app.json"
+  },
+  "projects": {
+    "storage-merger-api": {
+      "type": "application",
+      "root": "apps/storage-merger-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/storage-merger-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/storage-merger-api/tsconfig.app.json"
+      }
+    },
+    "api-gateway": {
+      "type": "application",
+      "root": "apps/api-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    },
+    "shared": {
+      "type": "library",
+      "root": "libs/shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared/tsconfig.lib.json"
+      }
+    },
+    "shared-types": {
+      "type": "library",
+      "root": "libs/shared-types",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared-types/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared-types/tsconfig.lib.json"
+      }
+    }
+  }
+}
