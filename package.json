@@ -52,7 +52,6 @@
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "jest": "28.1.2",
     "prettier": "^2.7.1",
     "pretty-quick": "^3.1.3",
@@ -87,11 +86,6 @@
     "moduleNameMapper": {
       "^@shared/shared(|/.*)$": "<rootDir>/libs/shared/src/$1",
       "^@shared-types/shared-types(|/.*)$": "<rootDir>/libs/shared-types/src/$1"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
     }
   }
 }
