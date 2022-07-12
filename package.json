@@ -20,7 +20,6 @@
     "test:e2e": "jest --config ./apps/storage-merger-api/test/jest-e2e.json"
   },
   "dependencies": {
-    "@fusionauth/typescript-client": "^1.36.0",
     "@nestjs-query/core": "^0.30.0",
     "@nestjs-query/query-typeorm": "^0.30.0",
     "@nestjs/cli": "^9.0.0",
@@ -30,6 +29,7 @@
     "@nestjs/cqrs": "^9.0.0",
     "@nestjs/platform-express": "^9.0.1",
     "@nestjs/typeorm": "^9.0.0",
+    "auth0": "^2.42.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
@@ -46,6 +46,7 @@
   "devDependencies": {
     "@nestjs/schematics": "^9.0.1",
     "@nestjs/testing": "^9.0.1",
+    "@types/auth0": "^2.35.2",
     "@types/express": "^4.17.13",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "28.1.4",
@@ -92,7 +93,9 @@
     "moduleNameMapper": {
       "^@shared/shared(|/.*)$": "<rootDir>/libs/shared/src/$1",
       "^@shared-types/shared-types(|/.*)$": "<rootDir>/libs/shared-types/src/$1",
-      "^@fusion-auth/fusion-auth(|/.*)$": "<rootDir>/libs/fusion-auth/src/$1"
+      "^@fusion-auth/fusion-auth(|/.*)$": "<rootDir>/libs/fusion-auth/src/$1",
+      "^@fusion-auth-api/fusion-auth-api(|/.*)$": "<rootDir>/libs/fusion-auth-api/src/$1",
+      "^@auth0-api-client/auth0-api-client(|/.*)$": "<rootDir>/libs/auth0-api-client/src/$1"
     }
   }
 }

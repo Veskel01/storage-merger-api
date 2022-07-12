@@ -54,13 +54,13 @@
         "tsConfigPath": "apps/auth-service/tsconfig.app.json"
       }
     },
-    "fusion-auth": {
+    "auth0-api-client": {
       "type": "library",
-      "root": "libs/fusion-auth",
+      "root": "libs/auth0-api-client",
       "entryFile": "index",
-      "sourceRoot": "libs/fusion-auth/src",
+      "sourceRoot": "libs/auth0-api-client/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/fusion-auth/tsconfig.lib.json"
+        "tsConfigPath": "libs/auth0-api-client/tsconfig.lib.json"
       }
     }
   }
