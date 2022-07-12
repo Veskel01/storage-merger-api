@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppConfigModule } from '@shared';
 import { configLoaders } from './infrastructure/config';
 import { RepositoriesModule } from './infrastructure/repositories';
-import { PresentersHttpModule } from './presenters/http/presenters-http.module';
+import { PresentersHttpModule } from './presenters';
 
 @Module({
   imports: [

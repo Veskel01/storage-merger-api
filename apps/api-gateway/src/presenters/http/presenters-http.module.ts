@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
+import { UsersHttpPresenterModule } from './users/users-http-presenter.module';
 
 @Module({
-  imports: [UsersModule]
+  imports: [UsersHttpPresenterModule]
 })
 export class PresentersHttpModule {}

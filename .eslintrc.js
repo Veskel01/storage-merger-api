@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/ban-ts-comment': 'warn',
     'max-len': ['warn', { code: 100 }],
+    '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/naming-convention': [
       'error',
       {
