@@ -1,17 +1,17 @@
-import { Auth0ApiClientModule } from '@auth0-api-clien';
 import { Module } from '@nestjs/common';
-import { AppConfigModule } from '@shared';
 import { AuthServiceController } from './auth-service.controller';
-import { Auth0ApiClientConfig } from './config';
+import { AppConfigModule } from '@shared';
+import { FusionAuthModule } from '@fusion-auth';
+import { FusionAuthConfig } from './config';
 
 @Module({
   imports: [
     AppConfigModule.forApp('auth-service', {
-      cache: true,
-      isGlobal: true
+      isGlobal: true,
+      cache: true
     }),
-    Auth0ApiClientModule.forRootAsync({
-      useClass: Auth0ApiClientConfig
+    FusionAuthModule.forRootAsync({
+      useClass: FusionAuthConfig
     })
   ],
   controllers: [AuthServiceController]

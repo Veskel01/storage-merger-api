@@ -1,5 +1,3 @@
-import { BaseDomainModel } from './base-domain-model.shared';
-import { BaseRepository } from './base-repository.shared';
-import { TypeOrmEntity } from './typeorm-entity.shared';
-
-export { BaseDomainModel, BaseRepository, TypeOrmEntity };
+export * from './pagination/page-meta.dto';
+export * from './pagination/page-options.dto';
+export * from './pagination/page.dto';

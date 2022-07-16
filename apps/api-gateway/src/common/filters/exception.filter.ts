@@ -3,8 +3,7 @@ import {
   Catch,
   ExceptionFilter as NestExceptionFilter,
   HttpException,
-  Logger,
-  NotFoundException
+  Logger
 } from '@nestjs/common';
 import { Stages } from '@shared';
 import { Request, Response } from 'express';

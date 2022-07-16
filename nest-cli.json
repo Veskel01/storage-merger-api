@@ -1,23 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/storage-merger-api/src",
+  "sourceRoot": "apps/api-gateway/src",
   "monorepo": true,
-  "root": "apps/storage-merger-api",
+  "root": "apps/api-gateway",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/storage-merger-api/tsconfig.app.json"
+    "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
   },
   "projects": {
-    "storage-merger-api": {
-      "type": "application",
-      "root": "apps/storage-merger-api",
-      "entryFile": "main",
-      "sourceRoot": "apps/storage-merger-api/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/storage-merger-api/tsconfig.app.json"
-      }
-    },
     "api-gateway": {
       "type": "application",
       "root": "apps/api-gateway",
@@ -54,13 +45,13 @@
         "tsConfigPath": "apps/auth-service/tsconfig.app.json"
       }
     },
-    "auth0-api-client": {
+    "fusion-auth": {
       "type": "library",
-      "root": "libs/auth0-api-client",
+      "root": "libs/fusion-auth",
       "entryFile": "index",
-      "sourceRoot": "libs/auth0-api-client/src",
+      "sourceRoot": "libs/fusion-auth/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/auth0-api-client/tsconfig.lib.json"
+        "tsConfigPath": "libs/fusion-auth/tsconfig.lib.json"
       }
     }
   }

@@ -1,16 +1,18 @@
 import { DynamicModule, Module, ModuleMetadata } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
+import { CqrsPublisherModule } from '../../cqrs-publisher';
+import { QueryHandlers } from './query-handlers';
+import { UsersFacade } from './users.facade';
 
-// TODO exports
 @Module({
-  imports: [CqrsModule]
+  imports: [CqrsPublisherModule],
+  providers: [UsersFacade, ...QueryHandlers],
+  exports: [UsersFacade]
 })
 export class UsersApplicationModule {
   public static withInfrastructure(infrastructure: ModuleMetadata['imports']): DynamicModule {
     return {
       module: UsersApplicationModule,
-      imports: [...(infrastructure ?? [])],
-      exports: [...(infrastructure ?? [])]
+      imports: [...(infrastructure ?? [])]
     };
   }
 }

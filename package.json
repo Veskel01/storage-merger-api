@@ -20,13 +20,18 @@
     "test:e2e": "jest --config ./apps/storage-merger-api/test/jest-e2e.json"
   },
   "dependencies": {
+    "@fusionauth/typescript-client": "^1.36.0",
+    "@golevelup/nestjs-rabbitmq": "^2.4.0",
     "@nestjs-query/core": "^0.30.0",
     "@nestjs-query/query-typeorm": "^0.30.0",
+    "@nestjs/axios": "^0.1.0",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/common": "^9.0.1",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.1",
     "@nestjs/cqrs": "^9.0.0",
+    "@nestjs/microservices": "^9.0.3",
+    "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.1",
     "@nestjs/typeorm": "^9.0.0",
     "auth0": "^2.42.0",
@@ -34,8 +39,11 @@
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
     "fs-extra": "^10.1.0",
+    "jwks-rsa": "^2.1.4",
     "luxon": "^2.4.0",
     "nestjs-paginate": "^4.0.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -52,6 +60,7 @@
     "@types/jest": "28.1.4",
     "@types/luxon": "^2.3.2",
     "@types/node": "^18.0.3",
+    "@types/passport-jwt": "^3.0.6",
     "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
@@ -95,7 +104,8 @@
       "^@shared-types/shared-types(|/.*)$": "<rootDir>/libs/shared-types/src/$1",
       "^@fusion-auth/fusion-auth(|/.*)$": "<rootDir>/libs/fusion-auth/src/$1",
       "^@fusion-auth-api/fusion-auth-api(|/.*)$": "<rootDir>/libs/fusion-auth-api/src/$1",
-      "^@auth0-api-client/auth0-api-client(|/.*)$": "<rootDir>/libs/auth0-api-client/src/$1"
+      "^@auth0-api-client/auth0-api-client(|/.*)$": "<rootDir>/libs/auth0-api-client/src/$1",
+      "^@rabbit-messaging/rabbit-messaging(|/.*)$": "<rootDir>/libs/rabbit-messaging/src/$1"
     }
   }
 }

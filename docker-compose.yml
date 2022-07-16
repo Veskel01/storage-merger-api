@@ -14,9 +14,55 @@ services:
     env_file:
       - docker/postgres.env
 
+  fusion_db:
+    container_name: fusion_auth_db
+    image: postgres:latest
+    env_file:
+      - ./docker/fusion-auth.env
+    volumes:
+      - fusion_db_data:/var/lib/postgresql/data
+    ports:
+      - 5430:5432
+    restart: unless-stopped
+    networks:
+      - fusion_auth_network
+
+  fusion-auth:
+    container_name: fusion-auth
+    image: fusionauth/fusionauth-app:latest
+    depends_on:
+      - fusion_db
+    env_file:
+      - ./docker/fusion-auth.env
+    networks:
+      - fusion_auth_network
+    restart: unless-stopped
+    ports:
+      - 9011:9011
+    volumes:
+      - fa_config:/usr/local/fusionauth/config
+
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: rabbit
+    restart: unless-stopped
+    hostname: rabbit-local
+    volumes:
+      - ./docker/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./docker/data/dev/rabbit:/var/lib/rabbitmq/mnesia/
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - app_network
+
 volumes:
   postgres_data:
+  fusion_db_data:
+  fa_config:
 
 
 networks:
   app_network:
+  fusion_auth_network:
+    driver: bridge

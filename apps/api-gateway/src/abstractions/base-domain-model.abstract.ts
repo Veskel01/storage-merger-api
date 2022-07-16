@@ -7,7 +7,9 @@ interface IToResourceArgs<T extends IBaseEntity> {
   type: 'removeGivenKeys' | 'onlyGivenKeys';
 }
 
-export abstract class BaseDomainModel<TEntity extends IBaseEntity> extends AggregateRoot {
+export abstract class BaseDomainModel<
+  TEntity extends IBaseEntity = IBaseEntity
+> extends AggregateRoot {
   protected abstract state: Readonly<TEntity>;
 
   constructor(data?: Partial<TEntity>) {

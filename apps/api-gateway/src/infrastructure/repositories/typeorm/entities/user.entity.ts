@@ -1,5 +1,5 @@
 import { IUserEntity } from '../../../../domain/users';
-import { TypeOrmEntity } from '../../../../shared';
+import { TypeOrmEntity } from '../../../../abstractions';
 import { Column, Entity } from 'typeorm';
 
 @Entity({

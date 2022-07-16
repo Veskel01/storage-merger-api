@@ -24,8 +24,8 @@
       "@shared/*": ["libs/shared/src/*"],
       "@shared-types": ["libs/shared-types/src"],
       "@shared-types/*": ["libs/shared-types/src/*"],
-      "@auth0-api-clien": ["libs/auth0-api-client/src"],
-      "@auth0-api-client/*": ["libs/auth0-api-client/src/*"]
+      "@fusion-auth": ["libs/fusion-auth/src"],
+      "@fusion-auth/*": ["libs/fusion-auth/src/*"]
     }
   }
 }

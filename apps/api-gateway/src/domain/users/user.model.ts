@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { BaseDomainModel } from '../../shared';
+import { BaseDomainModel } from '../../abstractions';
 import { IUserEntity } from './user.entity';
 
 export class User extends BaseDomainModel<IUserEntity> {
