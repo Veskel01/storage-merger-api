@@ -1,6 +1,6 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { DeepPartial, IBaseEntity } from '@shared-types';
-import { deepCloneObject } from '../infrastructure/utils';
+import { deepCloneObject } from '../../infrastructure/utils';
 
 interface IToResourceArgs<T extends IBaseEntity> {
   keys: Array<keyof T>;

@@ -13,7 +13,7 @@ export class CreateNewUserHandler implements ICommandHandler<CreateNewUserComman
   public async execute({ newUserData }: CreateNewUserCommand): Promise<User> {
     const entity = await this.usersRepository.create(newUserData);
     const user = this.cqrsService.getModelWithMergedContext(new User(entity));
-    user.handleCreate();
+    user.handleCreation();
     user.commit();
 
     return user;

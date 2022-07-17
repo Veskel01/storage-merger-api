@@ -18,7 +18,7 @@ export class User extends BaseDomainModel<IUserEntity> {
     };
   }
 
-  public handleCreate(): void {
+  public handleCreation(): void {
     this.apply(new NewUserCreatedEvent(this.getState()));
   }
 }

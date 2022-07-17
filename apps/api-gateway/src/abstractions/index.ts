@@ -1,19 +1,19 @@
 import { MetadataGuard } from './metadata-guard.abstract';
-import { BaseDomainModel } from './base-domain-model.abstract';
 import { BaseRepository } from './base-repository.abstract';
 import { TypeOrmEntity } from './typeorm-entity.abstract';
-import { DomainCommand } from './domain-command.abstract';
-import { DomainEvent } from './domain-event.abstract';
-import { DomainQuery } from './domain-query.abstract';
+import { BaseDomainModel } from './domain/base-domain-model.abstract';
+import { DomainCommand } from './domain/domain-command.abstract';
+import { DomainEvent } from './domain/domain-event.abstract';
+import { DomainQuery } from './domain/domain-query.abstract';
+import { UserInfoService } from './auth/user-info-service.abstract';
 
 export {
   MetadataGuard,
-  BaseDomainModel,
   BaseRepository,
   TypeOrmEntity,
+  BaseDomainModel,
   DomainCommand,
   DomainEvent,
-  DomainQuery
+  DomainQuery,
+  UserInfoService
 };
-
-export * from './auth/user-info.service';
