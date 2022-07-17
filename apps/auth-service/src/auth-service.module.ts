@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AuthServiceController } from './auth-service.controller';
 import { AppConfigModule } from '@shared';
 import { FusionAuthModule } from '@fusion-auth';
 import { FusionAuthConfig } from './config';
@@ -13,7 +12,6 @@ import { FusionAuthConfig } from './config';
     FusionAuthModule.forRootAsync({
       useClass: FusionAuthConfig
     })
-  ],
-  controllers: [AuthServiceController]
+  ]
 })
 export class AuthServiceModule {}

@@ -8,7 +8,7 @@ export class FusionAuthConfig implements IFusionAuthModuleOptionsFactory {
 
   public createFusionAuthModuleOptions(): BaseFusionAuthModuleOptions {
     const apiKey = this.configService.get('FUSION_AUTH_API_KEY', '');
-    const host = this.configService.get('FUSION_AUTH_HOST', '');
+    const host = this.configService.get('AUTH_ISSUER_URL', '');
     const tenantId = this.configService.get('FUSION_AUTH_TENANT_ID', '');
     return {
       apiKey,

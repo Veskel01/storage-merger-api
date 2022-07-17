@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { IBaseEntity } from '@shared-types';
+import { DeepPartial, IBaseEntity } from '@shared-types';
 import { deepCloneObject } from '../infrastructure/utils';
 
 interface IToResourceArgs<T extends IBaseEntity> {
@@ -10,32 +10,40 @@ interface IToResourceArgs<T extends IBaseEntity> {
 export abstract class BaseDomainModel<
   TEntity extends IBaseEntity = IBaseEntity
 > extends AggregateRoot {
-  protected abstract state: Readonly<TEntity>;
+  private _state: Readonly<TEntity>;
 
-  constructor(data?: Partial<TEntity>) {
+  protected abstract shapeModelState(): Readonly<TEntity>;
+
+  constructor(data?: DeepPartial<TEntity>) {
     super();
+    this._state = this.shapeModelState();
     if (data) {
-      this.setProperties(data);
+      this.setState(data);
     }
   }
 
-  public getProperties(): TEntity {
-    return this.state;
+  public getState(): Readonly<TEntity> {
+    return this._state;
   }
 
-  public setProperties(data: Partial<TEntity>): void {
-    Object.assign(this.state, data);
+  public setState(data: DeepPartial<TEntity>): void {
+    this._state = {
+      ...this._state,
+      ...data
+    };
   }
 
-  public toResource<TResource extends TEntity>({
-    keys,
-    type
-  }: IToResourceArgs<TEntity>): TResource {
+  public toResource<TResource extends TEntity>(
+    { keys, type }: IToResourceArgs<TEntity> = {
+      keys: [],
+      type: 'onlyGivenKeys'
+    }
+  ): TResource {
     if (keys.length === 0) {
-      return this.getProperties() as TResource;
+      return this.getState() as TResource;
     }
 
-    const entityData = deepCloneObject<TEntity>(this.getProperties());
+    const entityData = deepCloneObject<TEntity>(this.getState());
 
     if (type === 'removeGivenKeys') {
       const removeResult = {} as TResource;

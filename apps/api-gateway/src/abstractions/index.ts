@@ -15,3 +15,5 @@ export {
   DomainEvent,
   DomainQuery
 };
+
+export * from './auth/user-info.service';

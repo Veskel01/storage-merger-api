@@ -1,12 +1,24 @@
-import { DateTime } from 'luxon';
 import { BaseDomainModel } from '../../abstractions';
+import { NewUserCreatedEvent } from './events';
 import { IUserEntity } from './user.entity';
 
 export class User extends BaseDomainModel<IUserEntity> {
-  protected state: Readonly<IUserEntity> = {
-    id: '',
-    createdAt: DateTime.now().toLocal().toJSDate(),
-    email: '',
-    updatedAt: DateTime.now().toLocal().toJSDate()
-  };
+  protected shapeModelState(): Readonly<IUserEntity> {
+    return {
+      id: '',
+      authId: '',
+      createdAt: new Date(),
+      email: '',
+      updatedAt: new Date(),
+      firstName: '',
+      lastName: '',
+      birthDate: new Date(),
+      phoneNumber: '',
+      roles: []
+    };
+  }
+
+  public handleCreate(): void {
+    this.apply(new NewUserCreatedEvent(this.getState()));
+  }
 }

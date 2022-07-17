@@ -1,4 +1,4 @@
 import { CqrsPublisherModule } from './cqrs-publisher.module';
-import { CqrsPublisherService } from './cqrs-publisher.service';
+import { CqrsService } from './cqrs.service';
 
-export { CqrsPublisherModule, CqrsPublisherService };
+export { CqrsPublisherModule, CqrsService };

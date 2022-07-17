@@ -19,9 +19,17 @@ export class UsersTypeOrmRepository
     super(orm);
   }
 
-  public findOne(id: string): Promise<IUserEntity | null> {
+  public findOneById(id: string): Promise<IUserEntity | null> {
     return this.orm.findOne({
       where: { id }
+    });
+  }
+
+  public findByAuthId(authId: string): Promise<IUserEntity | null> {
+    return this.orm.findOne({
+      where: {
+        authId
+      }
     });
   }
 
@@ -46,6 +54,10 @@ export class UsersTypeOrmRepository
 
   public create(entityDataToCreate: Partial<IUserEntity>): Promise<IUserEntity> {
     return this.createOne(entityDataToCreate);
+  }
+
+  public updateSingle(id: string, dataToUpdate: Partial<IUserEntity>): Promise<IUserEntity> {
+    return this.updateOne(id, dataToUpdate);
   }
 
   public async bulkCreate(entitiesDataToCreate: Partial<IUserEntity>[]): Promise<IUserEntity[]> {
