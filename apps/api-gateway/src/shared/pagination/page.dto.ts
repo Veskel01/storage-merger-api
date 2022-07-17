@@ -1,7 +1,6 @@
-import { IBaseEntity } from '@shared-types';
 import { PageMetaDTO } from './page-meta.dto';
 
-export class PageDTO<T extends IBaseEntity> {
+export class PageDTO<T> {
   public readonly data: T[];
   public readonly meta: PageMetaDTO;
 

@@ -8,6 +8,7 @@ import { Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Stages } from '@shared';
 import { ExceptionFilter } from './common/filters';
+import { AuthenticationGuard } from './common/guards';
 import { LoggingInterceptor } from './common/interceptors';
 
 export class AppGlobals {
@@ -23,7 +24,8 @@ export class AppGlobals {
   }
 
   public get globalGuards(): CanActivate[] {
-    return [];
+    const authGuard = new AuthenticationGuard(this._reflector);
+    return [authGuard];
   }
 
   public get globalPipes(): PipeTransform[] {

@@ -7,9 +7,9 @@ import { UsersFacade } from '../../application/users';
 import {
   CreateNewUserCommand,
   GetSingleUserQuery,
-  IUserEntity,
   UpdateUserCommand,
-  User
+  User,
+  UserDTO
 } from '../../domain/users';
 import { detectPublicRoute, extractBearerToken } from '../../helpers';
 import { IImportedUser } from '../../types';
@@ -56,7 +56,7 @@ export class UserInfoInterceptor implements NestInterceptor {
 
   private _fetchUserByAuthId(params: Params): Observable<Params> {
     return this.usersFacade
-      .getSingle(new GetSingleUserQuery(params.importedUser.authId, 'auth'))
+      .getSingleUser(new GetSingleUserQuery(params.importedUser.authId, 'auth'))
       .pipe(
         map((user) => {
           params.user = user;
@@ -88,7 +88,7 @@ export class UserInfoInterceptor implements NestInterceptor {
       const dataToUpdate = {} as Record<string, unknown>;
 
       Object.entries(difference).forEach(([key, value]) => {
-        const typedKey = key as keyof IUserEntity;
+        const typedKey = key as keyof UserDTO;
         if (userState[typedKey] && value) {
           const isArray = Array.isArray(userState[typedKey]);
           if (isArray) {

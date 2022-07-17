@@ -7,10 +7,10 @@ export class GetSingleUserHandler implements IQueryHandler<GetSingleUserQuery> {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   public async execute({ id, idType }: GetSingleUserQuery): Promise<User | null> {
-    const userEntity =
+    const user =
       idType === 'auth'
         ? await this.usersRepository.findByAuthId(id)
         : await this.usersRepository.findOneById(id);
-    return userEntity ? new User(userEntity) : null;
+    return user;
   }
 }

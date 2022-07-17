@@ -6,13 +6,15 @@ import { Request } from 'express';
 import { passportJwtSecret } from 'jwks-rsa';
 import { UserInfoService } from '../../abstractions';
 import { extractBearerToken } from '../../helpers';
-import { firstValueFrom } from 'rxjs';
-import { IImportedUser } from '../../types';
+import { firstValueFrom, switchMap } from 'rxjs';
+import { UsersRepository } from '../../application/users';
+import { User } from '../../domain/users';
 
 export class FusionAuthJwtStrategy extends PassportStrategy(Strategy, AUTH_JWT_STRATEGY_NAME) {
   constructor(
     private readonly configService: ConfigService,
-    private readonly userInfoService: UserInfoService
+    private readonly userInfoService: UserInfoService,
+    private readonly usersRepository: UsersRepository
   ) {
     const authDomain = configService.get(AUTH_DOMAIN_ENV_VAR);
     const issuer = configService.get(AUTH_ISSUER_ENV_VAR);
@@ -31,11 +33,13 @@ export class FusionAuthJwtStrategy extends PassportStrategy(Strategy, AUTH_JWT_S
     });
   }
 
-  public async validate(request: Request): Promise<IImportedUser> {
+  public async validate(request: Request): Promise<User> {
     const accessToken = extractBearerToken(request);
-    const importedUser = await firstValueFrom(
-      this.userInfoService.getUserInfo(accessToken as string)
+    const user = await firstValueFrom(
+      this.userInfoService
+        .getUserInfo(accessToken as string)
+        .pipe(switchMap((importedUser) => this.usersRepository.findByAuthId(importedUser.authId)))
     );
-    return importedUser;
+    return user ? user : new User();
   }
 }

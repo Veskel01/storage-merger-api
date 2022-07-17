@@ -1,12 +1,11 @@
 import { BaseDomainModel } from '../../abstractions';
 import { NewUserCreatedEvent } from './events';
-import { IUserEntity } from './user.entity';
+import { UserDTO } from './user.dto';
 
-export class User extends BaseDomainModel<IUserEntity> {
-  protected shapeModelState(): Readonly<IUserEntity> {
+export class User extends BaseDomainModel<UserDTO> {
+  protected shapeModelState(): Readonly<UserDTO> {
     return {
       id: '',
-      authId: '',
       createdAt: new Date(),
       email: '',
       updatedAt: new Date(),
@@ -14,7 +13,8 @@ export class User extends BaseDomainModel<IUserEntity> {
       lastName: '',
       birthDate: new Date(),
       phoneNumber: '',
-      roles: []
+      roles: [],
+      fullName: ''
     };
   }
 

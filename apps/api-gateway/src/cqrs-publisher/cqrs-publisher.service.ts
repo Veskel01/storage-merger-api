@@ -3,7 +3,7 @@ import { CommandBus, EventBus, EventPublisher, QueryBus } from '@nestjs/cqrs';
 import { BaseDomainModel, DomainCommand, DomainEvent, DomainQuery } from '../abstractions';
 
 @Injectable()
-export class CqrsService {
+export class CqrsPublisherService {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly eventBus: EventBus,
@@ -11,7 +11,7 @@ export class CqrsService {
     private readonly eventPublisher: EventPublisher
   ) {}
 
-  public async publishCommand<T>(command: DomainCommand): Promise<T> {
+  public publishCommand<T>(command: DomainCommand): Promise<T> {
     return this.commandBus.execute<typeof command, T>(command);
   }
 

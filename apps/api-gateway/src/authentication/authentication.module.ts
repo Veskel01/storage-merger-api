@@ -13,25 +13,32 @@ import {
   AUTH_PROVIDER_ENV_VAR
 } from '../constants';
 import { Strategy } from 'passport-jwt';
+import { UsersRepository } from '../application/users';
+import { UsersInfrastructureModule } from '../infrastructure/modules';
 
 @Module({
   imports: [
     HttpModule,
     PassportModule.register({
       defaultStrategy: AUTH_JWT_STRATEGY_NAME
-    })
+    }),
+    UsersInfrastructureModule
   ],
   providers: [
     {
       provide: AUTH_JWT_STRATEGY_PROVIDER,
-      useFactory: (configService: ConfigService, userInfoService: UserInfoService): Strategy => {
+      useFactory: (
+        configService: ConfigService,
+        userInfoService: UserInfoService,
+        repository: UsersRepository
+      ): Strategy => {
         const authProvider = configService.get(AUTH_PROVIDER_ENV_VAR);
         if (authProvider === AUTH_PROVIDERS.fusionAuth) {
-          return new FusionAuthJwtStrategy(configService, userInfoService);
+          return new FusionAuthJwtStrategy(configService, userInfoService, repository);
         }
         throw new Error(`Unsupported authentication provider: ${authProvider}`);
       },
-      inject: [ConfigService, UserInfoService]
+      inject: [ConfigService, UserInfoService, UsersRepository]
     },
     {
       provide: UserInfoService,

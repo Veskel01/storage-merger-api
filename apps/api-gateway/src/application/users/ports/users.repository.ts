@@ -1,6 +1,6 @@
 import { BaseRepository } from '../../../abstractions';
-import { IUserEntity } from '../../../domain/users';
+import { IUserEntity, User } from '../../../domain/users';
 
-export abstract class UsersRepository extends BaseRepository<IUserEntity> {
-  public abstract findByAuthId(authId: string): Promise<IUserEntity | null>;
+export abstract class UsersRepository extends BaseRepository<IUserEntity, User> {
+  public abstract findByAuthId(authId: string): Promise<User | null>;
 }

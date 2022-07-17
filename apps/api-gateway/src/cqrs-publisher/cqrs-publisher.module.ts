@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { CqrsService } from './cqrs.service';
+import { CqrsPublisherService } from './cqrs-publisher.service';
 
 @Module({
   imports: [CqrsModule],
-  providers: [CqrsService],
-  exports: [CqrsService]
+  providers: [CqrsPublisherService],
+  exports: [CqrsPublisherService]
 })
 export class CqrsPublisherModule {}
