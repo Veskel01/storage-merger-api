@@ -23,7 +23,7 @@ export class AppConfigModule {
 
   private static _loadEnvFilePaths(appName: string): string[] {
     const basePath = `${process.cwd()}/apps`;
-    const globalAppEnvs = `${basePath}/.env`;
+    const globalAppEnvs = `${process.cwd()}/.env`;
 
     const appPath = `${basePath}/${appName}`;
 
